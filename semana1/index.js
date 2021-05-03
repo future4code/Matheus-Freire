@@ -64,14 +64,14 @@ console.log("você entende de programaçao?",programacao)
 */
 
 
-**exercicio 3**
+
 
 let a = 10
 let b = 25 
-let c
-c=b
-b=a
-console.log("a=",c)
-console.log("b=",b)
+let c = 10
+a=b
+b=c
+console.log(a)
+console.log(b)
 
 
