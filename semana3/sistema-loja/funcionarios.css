@@ -1,0 +1,18 @@
+h1{
+    text-align: center;
+    color: green;
+}
+.cabecalho{
+    background-color: green;
+    padding: 5px;
+}
+a{
+    margin: 20px;
+    color: white;
+}
+table{
+    border: 2px solid black;
+}
+.separar{
+    margin-right: 5px;
+}
