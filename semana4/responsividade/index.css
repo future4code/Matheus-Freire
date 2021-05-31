@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    display: grid;
+    grid-template-rows: 80px 1fr 80px ; 
+
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color:red;
+    width: 100%;
+    
+}
+.home{
+    width: 70px;
+    margin: 10px ;
+}
+.icone-e-texto{
+    display:flex;
+    align-items: center;
+}
+.lupa-e-texto{
+    display:flex;
+    align-items: center;
+}
+.lupa{
+    width: 30px;
+}
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    
+}
+main{
+    height: 496px;
+    background-color: silver;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(2,1fr);
+    padding: 35px;
+}
+.midias{
+    margin: 10px;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 2px 5px darkgrey;
+}
+.midias img{
+    width: 300px;
+    height: 200px;
+}
+
+@media screen and (min-device-width : 320px) and (max-device-width : 420px) {
+   
+    body{
+        width: 410px;  
+    }
+    header{
+        width: 100%;
+        margin: 0;  
+    }
+    input{
+        width: 120px;
+    }
+    main{
+        width: 410px;
+        display: flex;
+        flex-direction:column ;  
+        height: 100%; 
+    }
+    .main-video{
+        width: 410px;
+        height: 100%;
+    }
+    .video1{
+        width: 400px;
+    }
+}
+
+
+/** 
+  *
+  *  Videos
+  *
+  **/
+  .main-video{
+    height: 496px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+  }
+  .video1{
+      width: 100vw;
+      height: 460px;
+  }
+  
