@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+}
+header{
+    
+    background-color: mediumvioletred;
+    height: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 18fr;
+    grid-template-rows: 1fr;
+    row-gap: 10px;
+    justify-items: center;
+    align-items: center;
+
+}
+header h3{
+    grid-column: 2/3;
+    grid-row: 1;
+    justify-self: start;
+    
+}
+header img{
+    grid-column: 1/2;
+    height: 30px;
+    justify-self: start;
+    margin-left: 10px;
+    
+}
+button{
+    justify-self: end;
+    margin-right: 5px;
+}
+
+.container img{
+    height: 20px;
+}
+main{
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;   
+}
+.container{
+    width: 20vw;
+    background-color: #f2d0e0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    row-gap: 5px;
+    justify-items: center;
+    align-items: center;
+   
+
+}
+.home{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.texto{
+    justify-self: start;
+    margin-top: 10px;
+}
+.seta{
+    justify-self: end;
+    margin-top: 10px;
+}
+.bolos{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 30fr;
+    margin: 10px 10px;
+    align-items: stretch;
+    justify-items: stretch;
+}
+.bolo{
+    height: 200px;
+}
+.bolos h3{
+justify-self: center;
+}
+.bolos p{
+    justify-self: start;
+    align-self: start;
+}
+footer{
+    
+    background-color: mediumvioletred;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
