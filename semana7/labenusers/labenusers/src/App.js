@@ -38,7 +38,6 @@ export default class App extends React.Component{
   pegarUsuario=()=>{
     axios.get(url,headers)
     .then((resposta)=>{
-      console.log(resposta.data)
       this.setState({arrayNomes:resposta.data})
     })
     .catch((err)=>{
@@ -65,8 +64,8 @@ export default class App extends React.Component{
     }
     axios.post(url,body,headers)
     .then(()=>{
-      alert("playlist cadastrada com sucesso")
-      this.setState({inputName:""})
+      alert("Usuário cadastrado com sucesso")
+      this.setState({inputName:"",inputEmail:""})
       this.pegarUsuario()
     })
     .catch((err)=>{
@@ -77,15 +76,15 @@ export default class App extends React.Component{
     this.setState({trocaTela:!this.state.trocaTela})
   }
   render(){
-  /*const componentesArray = this.state.arrayNomes.map((nome)=>{
+  const componentesArray = this.state.arrayNomes.map((nome)=>{
     return (
       <li key={nome.id}>{nome.name}</li>
       )
-  })*/
+  })
   
     return(
       <div>
-         {this.state.trocaTela? <Usuarios arrayNomes={this.state.arrayNomes}/> :<div> <button onClick={this.onClickTroca} >Ir para página de lista </button>
+         {this.state.trocaTela? <Usuarios pegarUsuario={this.pegarUsuario} arrayNomes={this.state.arrayNomes}/> :<div> <button onClick={this.onClickTroca} >Ir para página de lista </button>
      
         <Container>
 
@@ -96,8 +95,9 @@ export default class App extends React.Component{
         <button onClick={this.criarUsuario}>Salvar</button>
       </Container>
       
-      </div>
+      < /div>
          }
+         
      </div>
     )
   }
