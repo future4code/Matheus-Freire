@@ -59,13 +59,12 @@ export default class Usuarios extends React.Component{
         }else(alert("usuário não deletado"))
         
     }
-render(){
+    render(){
    
-    const componentesArray = this.props.arrayNomes.map((nome)=>{
+            let componentesArray = this.props.arrayNomes.map((nome)=>{
         return (
             <div>
              <Dividir key={nome.id}>
-            
             <p onClick={()=>this.onClickTelas(nome.id)}>{nome.name } </p> 
              <button onClick={() => this.deletarUsuario(nome.id)}>Deletar</button>
              </Dividir> 
@@ -75,10 +74,11 @@ render(){
           )
       })
 
-      console.log(componentesArray)
+      
         return(
              <div> 
-              {this.state.trocaTela? <App/> : this.state.telas === "detalhes" ? <Detalhes id={this.state.ident} /> :  <div> 
+              {this.state.trocaTela? <App/> : this.state.telas === "detalhes" ? <Detalhes id={this.state.ident} /> :
+                <div> 
                                                 <button onClick={this.onClickTroca}>voltar tela</button>
                                                 <div>
                                                 {componentesArray}

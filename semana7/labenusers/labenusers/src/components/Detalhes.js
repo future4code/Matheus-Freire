@@ -10,6 +10,9 @@ export default class Detalhes extends React.Component{
         userEmail:'',
     
     }
+    componentDidMount(){
+        this.adicionarEmail()
+    }
     adicionarEmail=()=>{
        
         const url=`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${this.props.id}`
@@ -20,7 +23,7 @@ export default class Detalhes extends React.Component{
         })
         .then((resposta)=>{
            console.log(resposta)
-            this.setState({userName:resposta.data.name, userEmail:resposta.data.userEmail}) 
+            this.setState({userName:resposta.data.name, userEmail:resposta.data.email}) 
         })
             
             .catch((err) => {
@@ -29,18 +32,19 @@ export default class Detalhes extends React.Component{
         })
    
 }
+
     onClickTroca=()=>{
         this.setState({telas:"usuarios"})
     }
     render(){
-        this.adicionarEmail
-       console.log(this.state.userName,"nome")
-        
-       
+console.log(this.state.telas)
         return(
             <div>
-                {this.state.telas==='usuarios'? <Usuarios/> : <div> nome:{this.state.userName } <button onClick={this.onClickTroca}>Retornar para usuarios</button>
-                </div>}
+                {this.state.telas==='usuarios'? <Usuarios/> : this.state.telas==='detalhes'?  
+                <div> <p>nome:{this.state.userName}</p> 
+                <p>email:{this.state.userEmail}</p>
+                <button onClick={this.onClickTroca}>Retornar para usuarios</button>
+                </div>: <div></div>}
                
             </div>
         )
