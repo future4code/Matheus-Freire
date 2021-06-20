@@ -2,25 +2,48 @@ import axios from 'axios'
 import React from 'react'
 import styled from 'styled-components'
 import Musicas from './Musicas'
+import App from '../App'
+const Titulo=styled.h2`
+    text-align: center;
+`
+const IconeVoltar=styled.img`
+    width:3%;
+    border-radius: 100%;
+`
+const Botao=styled.button`
+    margin-left: 100%;
+    margin-top: -2.5%;
+    width: 5%;
+    height: 3vh;
+    
+`
+const Tudo=styled.div` 
+    background-color: orange;
+`
 const Body=styled.div`
     background-color: orange;
-    height: 100vh;
+    margin-top: ;
+    height: 100%;
+    padding: 1%;
 `
 const Imagem=styled.img`
-    width: 80%;
-    height: ;
+    width: 30%;
+   
     border-radius: 100%;
     
 `
 const Playlists=styled.div`
+   
     border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin:1%;
+    margin:2%;
+    background-color: black;
+    padding: 2%;
+   color: orange;
+    height: 40vh;
     
-   
-    height: 50vh;
 `
 const Icone=styled.div`
     display: flex;
@@ -30,6 +53,11 @@ const Icone=styled.div`
 const Lista = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+   
+    
+`
+const Imput=styled.div`
+    text-align: center;
 `
 export default class Playlist extends React.Component{
     state={
@@ -37,7 +65,11 @@ export default class Playlist extends React.Component{
         arrayPlaylist:[],
         trocarTela: 'playlist',
         id: '',
-        nome:''
+        nome:'',
+        voltarTela:'playlist'
+    }
+    onClickVoltarTela=()=>{
+        this.setState({voltarTela:"tela principal"})
     }
     onClickMusicas=(name,iden)=>{
         this.setState({trocarTela:'musicas'})
@@ -105,20 +137,31 @@ export default class Playlist extends React.Component{
     render(){
         console.log(this.state.nome)
         const listaPlaylist=this.state.arrayPlaylist.map((playlist)=>{
-            return (<Playlists  key={playlist.id}>
-                    <Imagem onClick={()=>this.onClickMusicas(playlist.name,playlist.id)} src="https://w7.pngwing.com/pngs/405/212/png-transparent-music-itunes-store-podcast-icon-orang-orange-musician-internet-radio.png"/>
+            return (
+            
+            <Playlists  key={playlist.id}>
+                <Botao onClick={()=>this.deletePlaylist(playlist.id)}>X</Botao>
+                    <Imagem onClick={()=>this.onClickMusicas(playlist.name,playlist.id)} src="https://www.fotoefeitos.com/images/202106/18/fotoefeitos.com__final_1420079290865678736_.jpg?act=11"/>
                     <Icone>
-                    <p onClick={()=>this.onClickMusicas(playlist.name,playlist.id)}>{playlist.name}</p>
-                    <button onClick={()=>this.deletePlaylist(playlist.id)}>X</button>
+                    <h3 onClick={()=>this.onClickMusicas(playlist.name,playlist.id)}>{playlist.name}</h3>
+                    
                     </Icone>
                     
             </Playlists>)
         })
         return(
             <div>
-                {this.state.trocarTela==='musicas' ? <Musicas id={this.state.id} nome={this.state.nome}/> : <Body>
+                {this.state.trocarTela==='musicas' ? <Musicas id={this.state.id} nome={this.state.nome}/> : 
+                this.state.voltarTela==='tela principal' ? <App/> :
+                <Body>
+                <IconeVoltar onClick={this.onClickVoltarTela} src="https://w7.pngwing.com/pngs/895/794/png-transparent-back-button-arrow-icon-the-direction-of-the-thumbnail.png"/>
+                 <Titulo>Hora de criar sua playlist, fala pra gente do seus gêneros de músicas preferido!!</Titulo>
+                <Imput>
                 <input placeholder="Criar playlist" value={this.state.inputPlaylist} onChange={this.onChangePlaylist}></input>
-                <button onClick={this.createPlaylist}>Criar</button>
+                <button onClick={this.createPlaylist}>Adicionar Playlist</button>
+                </Imput>
+                
+                <Titulo>Minha Playlist</Titulo>
                      <Lista>      {listaPlaylist}   </Lista>
                                                     </Body>}
                 
