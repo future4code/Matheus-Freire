@@ -1,13 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+*{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+}
 .lista-viagem{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 3%;
     border: 1px solid blue;
     margin-top: 2%;
     margin-left: 2%;
     background-color:lightblue;
+    height: 70vh;
 }
 .container{
     display: grid;
@@ -17,4 +24,20 @@
 .astronauta{
     width: 50%;
     border-radius: 100%;
+}
+
+/*---------------------homePage------------*/
+.botao{
+    margin-top: 2%;
+    padding: 2%;
+    border-radius: 20px;
+    width: 30%;
+}
+.botao:hover{
+    cursor: pointer;
+    background-color:lightblue;
+}
+.labex{
+    text-align: center;
+    margin: 0%;
 }
