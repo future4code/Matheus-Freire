@@ -28,7 +28,7 @@ import { TripDetailsPage } from "../pages/TripDetailsPage";
                     <Route exact path={'/criarPage'}>
                         <CreateTripPage/>
                     </Route>
-                    <Route exact path={'/detalhesPage'}>
+                    <Route exact path={'/detalhesPage/:id/:nome'}>
                         <TripDetailsPage/>
                     </Route>
                 </Switch>

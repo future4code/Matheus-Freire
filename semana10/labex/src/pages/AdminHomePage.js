@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRequestData } from '../hooks/useRequestData'
 import styled from 'styled-components'
+import axios from 'axios'
 const Container =styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -13,11 +14,12 @@ const Container =styled.div`
 `
 export const AdminHomePage = () =>{
     const [arrayViagens,isLoading,error]=useRequestData('https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-pimentel-molina/trips')
-    
 
     const history = useHistory()
-    const telaDetalhes = ()=>{
-        history.push('/detalhesPage')
+    const telaDetalhes = (iden,name)=>{
+        const nome = name
+        const id = iden
+        history.push(`/detalhesPage/${id}/${nome}`)
     }
     const voltarTelaInicial =()=>{
         history.push('/')
@@ -37,7 +39,7 @@ export const AdminHomePage = () =>{
             <button onClick={telaCriarViagem}>Criar Viagem</button>
             {arrayViagens.map((nome)=>{
         return (
-            <Container onClick={telaDetalhes} key={nome.id}>
+            <Container onClick={()=>telaDetalhes(nome.id,nome.name)} key={nome.id}>
                 <h2>{nome.name}</h2>
                 <button>Excluir</button>
             </Container>
