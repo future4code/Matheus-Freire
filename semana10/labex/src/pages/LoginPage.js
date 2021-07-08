@@ -1,45 +1,49 @@
 import axios from 'axios'
 import React, { useState,useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import {useForm} from '../hooks/useForm'
 
 export const LoginPage = () =>{
-    const [email,setEmail]=useState('')
+   /* const [email,setEmail]=useState('')
     const [senha,setSenha]=useState('')
     const onChangeEmail=(event)=>{
         setEmail(event.target.value)
     }
     const onChangeSenha=(event)=>{
         setSenha(event.target.value)
-    }
-    const enviarLogin = () =>{
-        const body = {
-            email:email,
-            password:senha
-        }
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-pimentel-molina/login',body)
+    }*/
+    const {form,onChange,cleanFields}=useForm({
+        email:'',
+        password:''
+    })
+    const enviarLogin = (event) =>{
+        event.preventDefault();
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-pimentel-molina/login',form)
         .then((res)=>{
+            
             localStorage.setItem('token',res.data.token)
             history.push('/admPage')
+            cleanFields()
         }).catch((err)=>{
             alert('E-mail ou senha incorretos')
         })
     }
     const history=useHistory()
 
-    const irAdm = ()=>{
-        
-    }
     const volta = () =>{
         history.goBack()
     }
     return(
         <div>
             <h1>Login</h1>
-            <input placeholder='E-mail' value={email} onChange={onChangeEmail} />
-            <input type='password' placeholder='Senha' value={senha} onChange={onChangeSenha}/>
+            <form onSubmit={enviarLogin}>
+            <input required name={'email'} type='email' placeholder='E-mail' value={form.email} onChange={onChange} />
+            <input required pattern={"^.{6,}"} title='A senha deve conter pelo menos 6 digitos' type='password' name={'password'} placeholder='Senha' value={form.password} onChange={onChange}/>
             <button onClick={volta}>voltar</button>
-            <button onClick={enviarLogin}>Entrar</button>
+            <button >Entrar</button>
             
+            </form>
+           
         </div>
     )
 }

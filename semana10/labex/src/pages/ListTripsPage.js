@@ -32,7 +32,7 @@ export const ListTripsPage = ()=>{
         )
     })
     return(
-        <div>
+        <div className='body'>
             <button onClick={voltarHome}>voltar</button>
             <h1 className='labex'>Lista de Viagens</h1>
             <div className='container'>
