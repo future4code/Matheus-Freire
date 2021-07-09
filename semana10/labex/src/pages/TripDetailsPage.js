@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, {useState,useEffect} from 'react'
 import { useHistory,useParams } from 'react-router-dom'
-
+import './ListTrip.css'
 export const TripDetailsPage = () =>{
     const [array,setArray] = useState([])
     const [arrayAprovados,setArrayAprovados] = useState([])
@@ -46,36 +46,42 @@ export const TripDetailsPage = () =>{
  
     return(
         
-        <div>   
-            <button onClick={volta}>voltar</button> 
-            <h1>Detalhes da viagem</h1>
-            <h2>Dados dos Candidatos para {nome}</h2>
+        <div className='body'>  
+        <div className='body2'>
+            <img className='voltar' onClick={volta} src='http://www.borjaimobiliaria.com.br/novo/seta_voltar.png' />
+            <h1>Dados dos Candidatos para {nome}</h1>
             {array.length>0 ?  array.map((a)=>{
                 return (
-                    <div>
+                    <div className='container-candidatos'>
+                         <img className='imagem-astronauta' src='https://img.freepik.com/fotos-gratis/astronauta-fofo-esperando-o-foguete_357749-857.jpg?size=338&ext=jpg'/>
+                        <div className='separar-texto'>
                         <h4>Nome: {a.name}</h4>
-                        <p>Idade: {a.age}</p>
-                        <p>País: {a.country}</p>
-                        <p>Profissão: {a.profession}</p>
-                        <p>{a.applicationText}</p>
+                        <h4>Idade: {a.age}</h4>
+                        <h4>País: {a.country}</h4>
+                        <h4>Profissão: {a.profession}</h4>
+                        <h4>Texto de Aplicação: {a.applicationText}</h4>
                         <button onClick={()=>aprovarCandidato(a.id,true)}>Aprovar este!</button>
+                        </div>
                     </div>
                 )
-            }): <h2>Sem candidatos para analisar</h2>}
+            }): <p className='paragrafo'>Sem candidatos para analisar até o momento!!</p>}
            
-            <h2>Candidatos aprovados</h2>
+            <h1>Candidatos aprovados</h1>
             {arrayAprovados.length>0? arrayAprovados.map((a)=>{
                 return (
-                    <div>
-                        <h4>Nome: {a.name}</h4>
-                        <p>Idade: {a.age}</p>
-                        <p>País: {a.country}</p>
-                        <p>Profissão: {a.profession}</p>
-                        <p>{a.applicationText}</p>
+                    <div className='container-candidatos'>
                         
+                        <img className='imagem-astronauta' src='https://image.freepik.com/vetores-gratis/personagem-de-astronauta-feliz-com-design-plano_23-2147913354.jpg'/>
+                        <div className='separar-texto'>
+                        <h4>Nome: {a.name}</h4>
+                        <h4>Idade: {a.age}</h4>
+                        <h4>País: {a.country}</h4>
+                        <h4>Profissão: {a.profession}</h4>
+                        </div>
                     </div>
                 )
-            }): <h2>Sem candidatos aprovados até o momento</h2>}
+            }): <p className='paragrafo'>Sem candidatos aprovados até o momento</p>}
         </div>
+        </div> 
     )
 }

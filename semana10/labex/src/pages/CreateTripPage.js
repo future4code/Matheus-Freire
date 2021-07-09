@@ -2,27 +2,8 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../hooks/useForm'
+import './ListTrip.css'
 export const CreateTripPage = () => {
-    /* const [nome,setNome] = useState('')
-     const [planeta,setPlaneta]=useState('')
-     const [descricao,setDescricao]=useState('')
-     const [data,setData]=useState()
-     const [duracao,setDuracao]=useState()
-     const onchangeNome=(event)=>{
-         setNome(event.target.value)
-     }
-     const onchangePlaneta=(event)=>{
-         setPlaneta(event.target.value)
-     }
-     const onchangeDescricao=(event)=>{
-         setDescricao(event.target.value)
-     }
-     const onchangeData=(event)=>{
-         setData(event.target.value)
-     }
-     const onchangeDuracao=(event)=>{
-         setDuracao(event.target.value)
-     }*/
     const { form, onChange, cleanFields } = useForm({
         name: '',
         planet: '',
@@ -54,8 +35,9 @@ export const CreateTripPage = () => {
         history.goBack()
     }
     return (
-        <div>
-            <button onClick={volta}>voltar</button>
+        <div className='body-create'>
+            <img className='voltar' onClick={volta} src='http://www.borjaimobiliaria.com.br/novo/seta_voltar.png' />
+            <div className='alinhar'>
             <h1>Criar viagens</h1>
             <form onSubmit={criarViagem}>
                 <input required pattern={"^.{5,}"} title='Mínimo de 5 letras' placeholder='Nome' name={'name'} value={form.name} onChange={onChange} />
@@ -72,7 +54,7 @@ export const CreateTripPage = () => {
                 <input required type='number' name={'durationInDays'} placeholder='Duração em dias' value={form.durationInDays} onChange={onChange} />
                 <button>Criar</button>
             </form>
-
+            </div>
         </div>
     )
 }

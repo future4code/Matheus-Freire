@@ -19,7 +19,8 @@ export const ListTripsPage = ()=>{
     console.log(arrayViagens)
     const listaViagens = arrayViagens.map((trip)=>{
         return (
-            <div className='lista-viagem' key={trip.id}>
+            <div className='lista-viagem' 
+           key={trip.id}>
                 <img className='astronauta' src='https://image.freepik.com/vetores-gratis/astronauta-bonito-montando-foguete-e-acenando-a-mao-dos-desenhos-animados-icone-ilustracao-conceito-de-icone-de-tecnologia-cientifica_138676-2130.jpg'/>
                 <h2>Nome: {trip.name}</h2>
                 <h4>Descrição: {trip.description}</h4>
@@ -33,13 +34,15 @@ export const ListTripsPage = ()=>{
     })
     return(
         <div className='body'>
-            <button onClick={voltarHome}>voltar</button>
+            <div className='tamanho'>
+            <img className='voltar' onClick={voltarHome} src='http://www.borjaimobiliaria.com.br/novo/seta_voltar.png' />
             <h1 className='labex'>Lista de Viagens</h1>
             <div className='container'>
             {isLoading && <p>carregando...</p>}
             {!isLoading && arrayViagens.length>0 && listaViagens}
             {!isLoading && error && <p>Ocorreu um erro</p>}
             {!isLoading && arrayViagens.length===0 && <p>Não tem nenhuma viagem disponivel</p>}
+        </div>
         </div>
         </div>
     )
