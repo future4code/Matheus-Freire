@@ -13,7 +13,7 @@ export const AplicationFormPage=()=>{
     country: ''
     })
     const params = useParams()
-    console.log("params", params)
+   
     const iden = params.id
     const nome = params.nome
     const history = useHistory()
@@ -43,7 +43,7 @@ export const AplicationFormPage=()=>{
             <form onSubmit={aplicarParaViagem}>
                 <input required pattern={'^.{3,}'} title='Mínimo de 3 letras' name={'name'} value={form.name} onChange={onChange} placeholder='Nome'/>
                 <input required min='18' name={'age'} type='number' value={form.age} onChange={onChange} placeholder='Idade'/>
-                <input  required pattern={'^.{30,}'} title='Mínimo de 30 caracteres'  name={'applicationText'}  value={form.applicationText} onChange={onChange} placeholder='Texto para aplicação'/>
+                <input helperText="Explique por que você é uma boa pessoa candidata"  required pattern={'^.{30,}'} title='Mínimo de 30 caracteres'  name={'applicationText'}  value={form.applicationText} onChange={onChange} placeholder='Texto para aplicação'/>
                 <input required pattern={'^.{5,}'} title='Mínimo de 5 caracteres'  name={'profession'}  value={form.profession} onChange={onChange} placeholder='Profissão'/>
                 <input required   name={'country'} value={form.country} onChange={onChange} placeholder='País'/>
                 <button className='botao-aplicar'>Aplicar</button>

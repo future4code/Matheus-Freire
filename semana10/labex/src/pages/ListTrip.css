@@ -7,7 +7,6 @@
 .lista-viagem{
     overflow: hidden;
   text-overflow: ellipsis;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +20,6 @@
     
 }
 .body{
-    width: 100vw;
     background-color: hsl(0, 0%, 90%);
     height: 100%;
 }
@@ -107,8 +105,8 @@ padding-top: 10%;
 }
 .separa-botoes{
     margin-top: 2%;
-    margin-right: 30%;
-    margin-left: 30%;
+    margin-right: 20%;
+    margin-left: 20%;
     display: flex;
     justify-content: space-evenly;
 }
@@ -190,6 +188,7 @@ form input{
     width: 30%;
     height: 40vh;
     border-radius: 50%;
+    align-self: center;
 }
 .container-candidatos{
     margin-top:2%;
@@ -198,12 +197,13 @@ form input{
     padding: 2%;
     display: flex;
     width: 60%;
-    
     border: 1px solid blue;
-    align-items: center;
 }
 .separar-texto{
     margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
 }
 .separar-texto button{
     margin-top: 2%;
@@ -223,7 +223,7 @@ form input{
     text-align: center;
 }
 .body2{
-    height: 100vh;
+    height: 100%;
 }
 
 /*---------------------create trip page------------*/
@@ -256,4 +256,143 @@ form button{
 }
 form button:hover{
     background-color: slateblue;
+}
+/*---------------------Home page------------*/
+.Body {
+    background-color: hsl(0, 0%, 90%);
+    margin-top: 0%;
+    height: 100vh;
+}
+.Separar {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.ImagemBotao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Imagem {
+    width: 70%;
+    height: 70vh;
+    border-radius: 100%;
+}
+
+
+
+
+
+/*---------------------media query------------*/
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .Separar {
+        margin-top: 2%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+        row-gap: 2%;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .Body{
+        height: 110vh;
+    }
+    .Imagem{
+        height: 40vh;
+    }
+    .voltar{
+        width: 8%;
+    }
+    /*---------------------Lista de viagem------------*/
+    .container{
+        display: grid;
+        grid-template-columns: 1fr  ;    
+        margin-top: 2%;
+    }
+    .lista-viagem{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 2%;
+        margin-left: 3%;
+        width: 90vw;
+        
+    }
+    .body{
+        height: 100%;
+        background-color: hsl(0, 0%, 90%);
+    }
+    .listaViagem{
+        height: 200vh;
+        background-color: hsl(0, 0%, 90%);
+    }
+    /*---------------------aplicar page------------*/
+    .dividir-inputs{
+        width: 95%;
+        height: 60vh;
+        margin-left: 0%;
+        margin-top: 0%;
+    }
+    /*---------------------Login------------*/
+    .card{
+        width: 80%;
+        margin-left: 5%;
+    }
+    .corpo{
+        background-color: hsl(0, 0%, 90%);
+        height: 100%;
+    }
+    /*---------------------Adm page------------*/
+    .separa-botoes button{
+      
+    }
+    .Container{
+        width: 95%;   
+        height: 10%;
+        margin-left: 1%; 
+       align-items: center;
+    }
+    /*---------------------create trip page------------*/
+    .alinhar{
+       width: 96%;
+       margin-left: 1%;
+       height: 50vh;
+       
+    }
+    
+/*---------------------detalhes viagem page------------*/
+.imagem-astronauta{
+    width: 50%;
+    height: 20vh;
+    border-radius: 50%;
+    align-self: center ;
+}
+.container-candidatos{
+    margin-top:2%;
+    margin-left:0%;
+    background-color: lightblue;
+    padding: 0%;
+    display: flex;
+    width: 95%;
+    height: 50vh;
+    border: 1px solid blue;
+    margin-left: 1%;
+    
+}
+.separar-texto{
+    display: flex;
+    flex-direction: column;
+    justify-self: space-evenly;
+    padding: 0%;
+    width: 60%;
+    height: 100%;
+}
+.separar-texto button{
+    width: 80%;
+    height: 24px;
+    padding: 1%;
+}
 }

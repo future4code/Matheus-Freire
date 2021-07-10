@@ -17,7 +17,6 @@ export const AdminHomePage = () =>{
         })
     },[idTrip])
     
-    console.log('aaaaaaa',array)
     const excluirViagem = (idViagem) =>{
         const token = localStorage.getItem('token')
         const headers = {

@@ -11,12 +11,12 @@ export const ListTripsPage = ()=>{
     const inscricao = (iden,nome)=>{
         history.push( `/inscricao/${iden}/${nome}`)
         const id = iden
-        console.log(id)
+        
         
     }
    
     const [arrayViagens,isLoading,error]=useRequestData('https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-pimentel-molina/trips')
-    console.log(arrayViagens)
+   
     const listaViagens = arrayViagens.map((trip)=>{
         return (
             <div className='lista-viagem' 
@@ -37,11 +37,13 @@ export const ListTripsPage = ()=>{
             <div className='tamanho'>
             <img className='voltar' onClick={voltarHome} src='http://www.borjaimobiliaria.com.br/novo/seta_voltar.png' />
             <h1 className='labex'>Lista de Viagens</h1>
+            <div className='listaViagem'>
             <div className='container'>
             {isLoading && <p>carregando...</p>}
             {!isLoading && arrayViagens.length>0 && listaViagens}
             {!isLoading && error && <p>Ocorreu um erro</p>}
             {!isLoading && arrayViagens.length===0 && <p>Não tem nenhuma viagem disponivel</p>}
+            </div>
         </div>
         </div>
         </div>

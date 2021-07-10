@@ -19,13 +19,11 @@ export const TripDetailsPage = () =>{
     useEffect(()=>{
         axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-pimentel-molina/trip/${id}`,headers)
         .then((res)=>{
-            console.log('aaa',res.data)
             setArray(res.data.trip.candidates)
-            console.log('aprovados',res.data.trip.approved)
+        
             setArrayAprovados(res.data.trip.approved)
         })
     },[idCandidato])
-    console.log('apr',arrayAprovados)
     const aprovarCandidato = (candId,result) =>{ 
         const body ={
             approve:result
@@ -36,7 +34,7 @@ export const TripDetailsPage = () =>{
             setIdCandidato(candId)
         })
     }
-    console.log(array,'array')
+  
     
     const history = useHistory()
   const volta = ()=>{
