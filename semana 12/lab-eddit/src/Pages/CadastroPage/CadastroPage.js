@@ -4,7 +4,10 @@ import { goToLogin } from '../../routes/coordinator'
 import { useForm } from '../../hooks/useForm'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/urls'
-const CadastroPage = () =>{
+import { sendSignUp } from '../../services/user'
+import useUmprotectPage from '../../hooks/useUmprotectPage'
+const CadastroPage = (props) =>{
+    useUmprotectPage()
     const history = useHistory()
     const {form,onChange,cleanFields}=useForm({
         username:'',
@@ -12,17 +15,8 @@ const CadastroPage = () =>{
         password:''
     })
     const onSubmitCadastro = (event) =>{
-        event.preventDefault();
-        axios.post(`${BASE_URL}/users/signup`,form)
-        .then((res)=>{
-            alert('Conta Criada com sucesso!!')
-            cleanFields()
-            goToLogin(history)
-            
-        })
-        .catch(()=>{
-            alert('Deu errado')
-        })
+        event.preventDefault()
+        sendSignUp(form,cleanFields,history,props.setRightButton)
     }
     return(
         <div>
@@ -49,7 +43,7 @@ const CadastroPage = () =>{
                  value={form.password}
                  onChange={onChange}
                   />
-                <button onClick={()=>goToLogin(history)}>Cadastrar</button>
+                <button >Cadastrar</button>
             </form>
            
         </div>

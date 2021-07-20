@@ -5,7 +5,9 @@ import { BASE_URL } from '../../constants/urls'
 import axios from 'axios'
 import { useForm } from '../../hooks/useForm'
 import { login } from '../../services/user'
-const Login = () => {
+import useUmprotectPage from '../../hooks/useUmprotectPage'
+const Login = ({setRightButton}) => {
+    useUmprotectPage()
     const {form,onChange,cleanFields}=useForm({
         email:'',
         password:''
@@ -13,17 +15,8 @@ const Login = () => {
     const history = useHistory()
     const sendLogin =(event)=>{
         event.preventDefault();
-        login(form,cleanFields,history)
-        /*axios.post(`${BASE_URL}/users/login`,form)
-        .then((res)=>{
-            console.log(res.data)
-            localStorage.setItem('token',res.data.token)
-            cleanFields()
-            goToFeed(history)
-        })
-        .catch((err)=>{
-            alert("deu ruim")
-        })*/
+        login(form,cleanFields,history,setRightButton)
+
     }
     return (
         <div>
