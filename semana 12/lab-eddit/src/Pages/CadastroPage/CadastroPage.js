@@ -16,7 +16,7 @@ const CadastroPage = (props) =>{
     })
     const onSubmitCadastro = (event) =>{
         event.preventDefault()
-        sendSignUp(form,cleanFields,history,props.setRightButton)
+        sendSignUp(form,cleanFields,history,props)
     }
     return(
         <div>

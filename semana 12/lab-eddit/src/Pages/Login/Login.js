@@ -16,7 +16,6 @@ const Login = ({setRightButton}) => {
     const sendLogin =(event)=>{
         event.preventDefault();
         login(form,cleanFields,history,setRightButton)
-
     }
     return (
         <div>
