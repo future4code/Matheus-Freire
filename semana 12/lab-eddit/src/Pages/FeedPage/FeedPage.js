@@ -4,56 +4,54 @@ import { BASE_URL } from '../../constants/urls'
 import useProtectPage from '../../hooks/useProtectPage'
 import useRequestData from '../../hooks/useRequestData'
 import axios from 'axios'
+import { useForm } from '../../hooks/useForm'
 const FeedPage = () =>{
     useProtectPage()
+    const [post,setPost] = useState()
     const [iden, setIden]=useState()
-    const {data,useEffect}= useRequestData([],`${BASE_URL}/posts`,iden)
-   
-    const curtir = (id,number) =>{
-        
-        const body = {
-            direction: number
-        }
-        axios.post(`${BASE_URL}/posts/${id}/votes`,body,{
+    const [iden2, setIden2]=useState()
+    const {data,getData}= useRequestData([],`${BASE_URL}/posts`)
+    const {form,onChange,cleanFields}=useForm({
+        title:'',
+        body:''
+    })
+   const createPost=(event)=>{
+    event.preventDefault()
+        axios.post(`${BASE_URL}/posts`,form,{
             headers:{
                 Authorization: localStorage.getItem('token')
             }
         })
         .then((res)=>{
-            console.log(res)
-            setIden(id)
+            console.log(res,'resposta')
+            cleanFields()
+            alert('postado')
+            getData()
         })
-        .catch(()=>{
+        .catch((err)=>{
             alert('erro')
         })
-    }
-    console.log('data feed', data)
-    const cards = data.map((post)=>{
-        return(
-            <div>
-            <Card
-            body={post.body}
-            title={post.title}
-            username={post.username}
-            commentCount = {post.commentCount}
-            voteSum={post.voteSum}
-            id = {post.id}
-            data={data}
-            />
-            <button onClick={()=>curtir(post.id,1)} >Curtir</button>
-            <h1>pronto: {post.voteSum}</h1>
-        </div>
-        )
-    })  
+   }
+    /*const list = data.map((z)=>{
+        return <Card
+       username = {z.username}
+     title= {z.title} body= {z.body}
+        voteSum={z.voteSum}
+        id={z.id}
+
+      commentCount={z.commentCount}
+        />
+    })*/
     return(
         <div>
             <h1>FeedPage</h1>
-            <form>
-                <input placeholder='Escreva seu Post' />
+            <form onSubmit={createPost}> 
+                <input value={form.title} name={'title'} onChange={onChange} placeholder='Título do post' />
+                <input value={form.body} name={'body'} onChange={onChange}  placeholder='Escreva seu post' />
                 <button>Postar!!</button>
             </form>
-            {cards}
-        </div>
+            <Card data={data} getData={getData}/>
+                    </div>
     )
 }
 export default FeedPage

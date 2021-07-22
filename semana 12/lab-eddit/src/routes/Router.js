@@ -16,7 +16,7 @@ const Router = () =>{
             <Route exact path='/'>
                 <Login setRightButton={setRightButton}/>
             </Route>
-            <Route exact path='/post'>
+            <Route exact path='/post/:id'>
                 <PostPage/>
             </Route >
             <Route exact path='/feed'>

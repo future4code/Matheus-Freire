@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-const useRequestData = (initialState,url,id) =>{
+const useRequestData = (initialState,url,id,id2) =>{
     const [data,setData] = useState(initialState)
-    console.log(id,'id')
     console.log('data userequest',data)
-    useEffect(()=>{
+    const getData = () =>{
         axios.get(url,{
             headers:{
                 Authorization: localStorage.getItem('token')
@@ -17,9 +16,12 @@ const useRequestData = (initialState,url,id) =>{
         .catch(()=>{
             alert('ocorreu um erro')
         })
-    },[id])
+    }
+    useEffect(()=>{
+        getData()
+    },[])
     
-    return {data,useEffect}
+    return {data,getData}
 }
 
 export default useRequestData

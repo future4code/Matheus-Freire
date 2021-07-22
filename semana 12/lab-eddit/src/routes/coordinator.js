@@ -1,8 +1,8 @@
 export const goToFeed = (history) =>{
     history.push('/feed')
 }
-export const goToPost = (history) =>{
-    history.push('/post')
+export const goToPost = (history,id) =>{
+    history.push(`/post/${id}`)
 }
 export const goToCadastro = (history) =>{
     history.push('/cadastre-se')
