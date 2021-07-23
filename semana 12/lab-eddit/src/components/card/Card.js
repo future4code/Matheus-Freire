@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { BASE_URL } from '../../constants/urls'
-import useRequestData from '../../hooks/useRequestData'
 import { goToPost } from '../../routes/coordinator'
+import './Card.css'
 const Container =  styled.div`
     border: 1px solid black;
 `
@@ -49,17 +49,30 @@ const Card = (array) =>{
         <div>
             {lista.map((props)=>{
                  return(
-                    <Container>
+                   <div className='card'>
                     <div onClick={()=>goToPost(history,props.id)}>
-                    <img src='https://www.clickgratis.com.br/blog-clickgratis/wp-content/uploads/2011/05/Desenhos-Animados-273x300.png'/>
-                    <h4>{props.username}</h4>
-                    <h4>{props.title} {props.body}</h4>
-                    <h4>Curtidas : {props.voteSum}</h4>
+                    <div className='container-header'>
+                        <img className='perfil-picture' src='https://prints.ultracoloringpages.com/9cba28179f5247edeb2a087f0347eac9.png' />
+                        <h4>{props.username}</h4>
                     </div>
-                    <button onClick={()=>curtir(props.id,1)} >Curtir</button>
-                    <button onClick={()=>deletarVoto(props.id)}>Descurtir</button>
-                    <h4>Comentários: {props.commentCount}</h4>
-                </Container>
+                    <div>
+                        <img className='picture-feed' src='https://s3.amazonaws.com/experimento.prd/wp-content/uploads/2019/07/australia_550879138.jpg'/>
+                        <h4>{props.title} {props.body}</h4>
+                    </div>
+                    </div>
+                    <div className='footer-card'>
+                        <div className='footer-icones'>
+                        <img onClick={()=>curtir(props.id,1)} className='icone' src='https://img2.gratispng.com/20180803/czt/kisspng-clip-art-computer-icons-portable-network-graphics-accessories-rustic-unlimited-5b64025f374389.7972848215332808632264.jpg' />
+                        <h4> {props.voteSum===null? 0: props.voteSum}</h4>
+                        <img onClick={()=>deletarVoto(props.id)} className='icone-dislike' src='https://sc.mogicons.com/share/facebook-dislike-151.jpg' />
+                        </div>
+                        <div className='comments'>
+                        <h4>Comentários : {props.commentCount===null? 0: props.commentCount}</h4>
+                        <h4></h4>
+                        </div>
+                    </div>
+                    </div>
+               
                  )   
             })}
 

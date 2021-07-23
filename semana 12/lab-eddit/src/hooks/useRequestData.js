@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 const useRequestData = (initialState,url,id,id2) =>{
     const [data,setData] = useState(initialState)
-    console.log('data userequest',data)
     const getData = () =>{
         axios.get(url,{
             headers:{
@@ -23,6 +22,5 @@ const useRequestData = (initialState,url,id,id2) =>{
     
     return {data,getData}
 }
-
 export default useRequestData
 

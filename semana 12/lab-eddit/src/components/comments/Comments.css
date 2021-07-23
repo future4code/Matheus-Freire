@@ -1,0 +1,39 @@
+.comments-card{
+    margin-top: 1%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #ECF3FF;
+}
+.perfil-pic{
+    width: 8%;
+}
+.comments1{
+    display: flex;
+    justify-content: flex-start;
+    background-color: #ECF3FF;
+    
+}
+.user{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-left: 1%;
+    border-radius: 50px;
+    width: 80%;
+    padding: 1%;
+}
+.footer-comments{
+    display: flex;
+    align-items: center;
+    margin-left: 30%;
+}
+.icone1{
+    width: 5%;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.icone-dislike1{
+    width: 9%;
+    border-radius: 100%;
+    cursor: pointer;
+}

@@ -1,0 +1,57 @@
+.card{
+    border: 1px solid black;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+    padding: 1%;
+    background-color: #ECF3FF;
+}
+.picture-feed{
+    height: 60vh;
+    width: 100%;
+    justify-self: center
+}
+.perfil-picture{
+    width: 5%;
+    margin-right: 1%;
+}
+.container-header{
+    display: flex;
+    align-items: center;
+    margin: 1%;
+}
+.footer-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid black;
+    margin-top: 1%;
+    background-color: #ECF3FF;
+}
+.icone{
+    border-radius: 100%;
+    width: 8%;
+    cursor: pointer;
+    margin: 1%;
+}
+.icone-dislike{
+    border-radius: 100%;
+    width: 14%;
+    cursor: pointer;
+}
+.footer-icones{
+    display: flex;
+    align-items: center;
+    
+    
+}
+.icone:hover{
+    opacity: 0.6;
+}
+.icone-dislike:hover{
+    opacity: 0.6;
+}
+.comments{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
