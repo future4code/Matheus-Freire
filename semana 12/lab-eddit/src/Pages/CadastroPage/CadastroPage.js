@@ -6,6 +6,7 @@ import axios from 'axios'
 import { BASE_URL } from '../../constants/urls'
 import { sendSignUp } from '../../services/user'
 import useUmprotectPage from '../../hooks/useUmprotectPage'
+import './CadastroPage.css'
 const CadastroPage = (props) =>{
     useUmprotectPage()
     const history = useHistory()
@@ -19,7 +20,8 @@ const CadastroPage = (props) =>{
         sendSignUp(form,cleanFields,history,props)
     }
     return(
-        <div>
+        <div className='body-cadastro'>
+            <div className='container-cadastro'>
             <h1>Página de cadastro</h1>
             <form onSubmit={onSubmitCadastro}>
                 <input 
@@ -45,7 +47,7 @@ const CadastroPage = (props) =>{
                   />
                 <button >Cadastrar</button>
             </form>
-           
+            </div>
         </div>
     )
 }

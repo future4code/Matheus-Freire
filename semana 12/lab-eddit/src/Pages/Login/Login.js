@@ -1,11 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { goToCadastro, goToFeed } from '../../routes/coordinator'
-import { BASE_URL } from '../../constants/urls'
-import axios from 'axios'
 import { useForm } from '../../hooks/useForm'
 import { login } from '../../services/user'
 import useUmprotectPage from '../../hooks/useUmprotectPage'
+import './Login.css'
 const Login = ({setRightButton}) => {
     useUmprotectPage()
     const {form,onChange,cleanFields}=useForm({
@@ -18,8 +17,10 @@ const Login = ({setRightButton}) => {
         login(form,cleanFields,history,setRightButton)
     }
     return (
-        <div>
+        <div className='body-login'>
+            <div className='container-login'>
             <h1>Login</h1>
+            <div className='separar-botao-input'>
             <form onSubmit={sendLogin}>
                 <input type='email'
                  required 
@@ -36,9 +37,11 @@ const Login = ({setRightButton}) => {
                  onChange={onChange}
                  />
                 <button>Entrar</button>
-               
+                <button onClick={() => goToCadastro(history)}>Cadastre-se</button>
             </form>
-            <button onClick={() => goToCadastro(history)}>Cadastre-se</button>
+            
+            </div>
+            </div>
         </div>
     )
 }
