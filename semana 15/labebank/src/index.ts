@@ -1,46 +1,99 @@
-import express,{Express,Request,Response} from 'express'
+import express,{Express,request,Request,Response} from 'express'
 import cors from 'cors'
+import { conta } from './conta'
+import { Conta } from './types'
 
 const app:Express=express()
 app.use(express.json())
 app.use(cors())
 
-type usuario={
-    id:number,
-    nome: string,
-    cpf: number,
-    nascimento: number,
-    saldo: number,
-    operacoes: [{
-        tipo: string,
-        valor: number
-    }]
-}
-
-const bankUsers: usuario[] =[
-    {
-        id:1,
-        nome: "matheus",
-        cpf: 11438556632,
-        nascimento: 1995,
-        saldo: 25,
-        operacoes:[{
-            tipo:"",
-            valor: 0
-        }]  
-    },
-    {
-        id:2,
-        nome: "mathxsd",
-        cpf: 114385566112,
-        nascimento: 199511,
-        saldo: 25,
-        operacoes:[{
-            tipo:"",
-            valor: 0
-        }]
+app.post("/users/create",(req:Request,res:Response)=>{
+    try{
+        const {name,CPF,dateAsString}=req.body
+        const [day,month,year]=dateAsString.split("/")
+        const date:Date=new Date(`${year}-${month}-${day}`)
+        const idadeEmMilisseconds:number=Date.now() - date.getTime()
+        const idadeAnos = idadeEmMilisseconds/1000/60/60/24/365
+        console.log(idadeAnos)
+        if(idadeAnos<18){
+            res.statusCode=404
+            throw new Error("Idade menor que 18 anos não é possivel criar conta")
+        }
+        conta.push({
+            name,
+            CPF,
+            date,
+            saldo:0,
+            balance:[]
+        })
+        res.status(200).send("Conta criada com sucesso")
+    }catch(error){
+        res.send(error.message)
     }
-] 
+})
+
+app.get("/users",(req:Request,res:Response)=>{
+    try{
+        if(!conta.length){
+            res.statusCode=404
+            throw new Error("Não tem nenhum usuário cadastrado")
+        }
+        res.status(200).send(conta)
+    }catch(error){
+        res.send(error.message)
+    }
+})
+
+//adicionar saldo
+
+app.post("/adicionarsaldo/:name/:CPF",(req:Request,res:Response)=>{
+    try{
+        const nome = req.params.name
+        const CPF = req.params.CPF
+        const saldo=req.body.saldo
+        if(!conta.length){
+            res.statusCode=404
+            throw new Error("Não tem nenhum usuário cadastrado")
+        }
+        if(!nome || !CPF){
+            res.statusCode=400
+            throw new Error("Parâmetro faltando")
+        }
+        conta.forEach((x)=>{
+            if(x.CPF===CPF && x.name===nome){
+                return x.saldo+=saldo
+            }
+        })
+        res.status(200).send("Saldo adicionado")
+    }catch(error){
+        res.send(error.message)
+    }
+})
+
+
+//----------------------------------------->pagar conta<--------------------------------
+app.post("/pagar/:CPF",(req:Request,res:Response)=>{
+    try{
+        const CPF = req.params.CPF
+        const valor = req.body.valor
+        const result:Conta | undefined = conta.find((x)=>{
+            return x.CPF ===CPF
+        })
+        if(!CPF.length){
+            res.statusCode=404
+            throw new Error("CPF não existe")
+        }
+        if(result?.saldo>valor){
+            conta.forEach((x)=>{
+                    return x.saldo-=valor
+            })
+            res.status(200).send("conta paga com sucesso")
+        }
+    }catch(error){
+        res.send(error.message)
+    }
+})
+
 app.post("/user",(req:Request,res:Response)=>{
     let errorCode:number=400
     try{
