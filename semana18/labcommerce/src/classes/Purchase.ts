@@ -1,14 +1,18 @@
 import { Product } from "./Product"
 import { User } from "./User"
 
-export class Purchase {
-    id?:number
-    name:string
-    description:string
-    price:number
-    constructor(name:string,description:string,price:number){
-        this.name=name,
-        this.description=description,
-        this.price=price
-    }
+export class Purchase  {
+    product_id:number
+    user_id: number
+    quantity:number
+    totalPrice:number
+    constructor(product_id:number,
+        user_id: number,
+        quantity:number,
+        totalPrice:number){
+            this.product_id=product_id
+            this.user_id=user_id
+            this.quantity=quantity
+            this.totalPrice=totalPrice
+        }
 }
