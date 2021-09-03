@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { Product } from "../classes/Product";
+import { productsArray } from "../classes/types";
 import { ProductDataBase } from "../dataBase/ProductDataBase";
 import { CustomError } from "../error/CustomError";
 
@@ -6,7 +8,10 @@ import { CustomError } from "../error/CustomError";
 export const getProducts = async(req:Request,res:Response):Promise<void>=>{
     try{
         const product = new ProductDataBase()
-        const productList = await product.getAll()
+        const productsArray:productsArray[] = await product.getAll()
+        const productList = productsArray.map((x)=>{
+            return new Product(x.name,x.description,x.price)
+        })
         if(productList.length===0){
             throw new CustomError(404,"Nenhum produto encontrado")
         }

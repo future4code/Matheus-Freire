@@ -15,9 +15,7 @@ export class ProductDataBase extends DataBase{
         .insert(product)
     }
     async getAll(){
-        const products:productsdb[] = DataBase.connection(this.TABLE_NAME).select()
-        return products.map((product)=>{
-            return new Product(product.name,product.description,product.price)
-        })
+        return DataBase.connection(this.TABLE_NAME).select()
+       
     }
 }

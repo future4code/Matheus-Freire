@@ -9,6 +9,6 @@ export class ticketDataBase extends DataBase{
         .insert(trip)
     }
     async getAll(){
-        await DataBase.connection(this.TABLE_NAME).select()
+        return await DataBase.connection(this.TABLE_NAME).select()
     }
 }

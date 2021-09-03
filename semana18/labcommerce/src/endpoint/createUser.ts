@@ -16,7 +16,6 @@ export const createUser = async(req:Request,res:Response):Promise<void>=>{
         const result = getAll.filter((x)=>{
             return x.email===email
         })
-        console.log(result)
         if(result.length>0){
             throw new CustomError(409, "email já cadastrado!")
         }
