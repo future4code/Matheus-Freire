@@ -9,6 +9,7 @@ export const createTrip = async(req:Request,res:Response):Promise<void>=>{
         if(!name || !description || !price || !origin || !destination){
             throw new CustomError(406,"Parâmetros faltando!") 
         }
+
         const trip = new Ticket(name, description, price, origin , destination)
         const tripDataBase=new ticketDataBase()
         await tripDataBase.create(trip)

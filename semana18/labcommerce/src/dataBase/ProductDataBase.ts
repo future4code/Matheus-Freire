@@ -1,12 +1,8 @@
 import { Product } from "../classes/Product";
+import { productsArray } from "../classes/types";
 import { DataBase } from "./DataBase";
 
-type productsdb={
-    name:string,
-    description:string,
-    price:number
-    id:number
-}
+
 
 export class ProductDataBase extends DataBase{
     private TABLE_NAME="product"
@@ -18,4 +14,13 @@ export class ProductDataBase extends DataBase{
         return DataBase.connection(this.TABLE_NAME).select()
        
     }
+    async ordernar(type:string){
+       const result = DataBase.connection.raw(`
+        SELECT * FROM ${this.TABLE_NAME}
+        ORDER BY price ${type}
+        `)
+      
+        return result
+    }
+    
 }

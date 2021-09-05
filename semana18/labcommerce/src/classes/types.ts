@@ -14,3 +14,10 @@ export type tripArray={
     origin: string,
     destiny: string
 }
+
+export type purchaseArray = {
+    id_product:number
+    id_user: number
+    quantity:number
+    total:number
+}

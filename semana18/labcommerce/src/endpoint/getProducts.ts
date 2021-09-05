@@ -10,7 +10,7 @@ export const getProducts = async(req:Request,res:Response):Promise<void>=>{
         const product = new ProductDataBase()
         const productsArray:productsArray[] = await product.getAll()
         const productList = productsArray.map((x)=>{
-            return new Product(x.name,x.description,x.price)
+            return new Product(x.name,x.description,x.price,x.id)
         })
         if(productList.length===0){
             throw new CustomError(404,"Nenhum produto encontrado")
