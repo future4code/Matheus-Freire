@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import * as jwt from "jsonwebtoken";
 config()
-  const expiresIn = "1min";
+  const expiresIn = "10min";
   export const generateToken=(input: AuthenticationData): string=> {
       
     const token = jwt.sign(
@@ -13,11 +13,10 @@ config()
         expiresIn
       }
     );
-    console.log(token)
     return token;
   }
 
 
-type AuthenticationData = {
+export type AuthenticationData = {
   id: string;
 }
