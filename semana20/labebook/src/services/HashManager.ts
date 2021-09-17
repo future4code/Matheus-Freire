@@ -10,6 +10,7 @@ export class HashManager{
 
     async compare(password:string, hash:string):Promise<boolean>{
             const hashCompare:boolean=await bcrypt.compare(password,hash)
+
             return hashCompare
         }
 }

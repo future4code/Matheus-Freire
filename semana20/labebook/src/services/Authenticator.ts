@@ -11,7 +11,6 @@ export class Authenticator{
             process.env.JWT_KEY as string,
             {expiresIn:"10 days"}
         )
-        console.log(token)
         return token
     }
     getTokenData(token:string){
